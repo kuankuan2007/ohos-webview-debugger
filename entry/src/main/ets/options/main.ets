@@ -97,6 +97,9 @@ export struct ConfigList{
   @Local itemGroupStyle:MyListItemGroupStyle =new MyListItemGroupStyle()
   @Local itemStyle:MyListItemStyle =new MyListItemStyle()
   @Builder
+
+
+
   itemHeader(text:string|Resource){
     Text(text)
       .textAlign(TextAlign.Start)
