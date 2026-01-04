@@ -1,7 +1,7 @@
 {
   "app": {
-    "bundleName": "com.example.myapplication",
-    "vendor": "example",
+    "bundleName": "com.kuankuan2007.ohos.ohos_webview_debugger",
+    "vendor": "webview_debugger",
     "versionCode": 1000000,
     "versionName": "1.0.0",
     "icon": "$media:layered_image",

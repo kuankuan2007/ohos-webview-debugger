@@ -6,11 +6,11 @@
     },
     {
       "name": "EntryAbility_desc",
-      "value": "description"
+      "value": "A application for debugging webview on OpenHarmony."
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "WebDev"
     },    {
       "name": "java_script_access",
       "value": "JavaScript Access"

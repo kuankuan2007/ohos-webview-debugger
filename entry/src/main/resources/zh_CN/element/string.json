@@ -1,6 +1,10 @@
 {
   "string": [
     {
+      "name": "EntryAbility_desc",
+      "value": "一个在鸿蒙上调试webview的应用"
+    },
+    {
       "name": "java_script_access",
       "value": "启用JavaScript"
     },{
