@@ -1,0 +1,16 @@
+{
+  "float": [
+    {
+      "name": "page_text_font_size",
+      "value": "50fp"
+    },
+    {
+      "name": "item_fontsize",
+      "value": "16vp"
+    },
+    {
+      "name": "item_title_fontsize",
+      "value": "20vp"
+    }
+  ]
+}

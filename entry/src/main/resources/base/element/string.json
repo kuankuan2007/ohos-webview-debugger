@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },    {
+      "name": "java_script_access",
+      "value": "JavaScript Access"
+    },{
+      "name": "dom_storage_access",
+      "value": "DOM Storage Access"
+    },{
+      "name": "web_options_basic_ability",
+      "value": "General Ability"
+    },{
+      "name": "web_options_dark_mode",
+      "value": "Dark Mode"
+    },{
+      "name": "web_options_dark_mode_off",
+      "value": "Disable"
+    },{
+      "name": "web_options_dark_mode_on",
+      "value": "Enable"
+    },{
+      "name": "web_options_dark_mode_auto",
+      "value": "Auto"
+    },{
+      "name": "web_options_force_dark_access",
+      "value": "Force Dark Access"
+    }
+  ]
+}

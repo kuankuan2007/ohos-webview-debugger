@@ -1,0 +1,29 @@
+{
+  "string": [
+    {
+      "name": "java_script_access",
+      "value": "启用JavaScript"
+    },{
+      "name": "dom_storage_access",
+      "value": "启用Dom Storage"
+    },{
+      "name": "web_options_basic_ability",
+      "value": "基本功能"
+    },{
+      "name": "web_options_dark_mode",
+      "value": "深色模式"
+    },{
+      "name": "web_options_dark_mode_off",
+      "value": "禁用"
+    },{
+      "name": "web_options_dark_mode_on",
+      "value": "启用"
+    },{
+      "name": "web_options_dark_mode_auto",
+      "value": "自动"
+    },{
+      "name": "web_options_force_dark_access",
+      "value": "强制深色模式"
+    }
+  ]
+}
