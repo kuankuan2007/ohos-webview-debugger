@@ -11,30 +11,262 @@
     {
       "name": "EntryAbility_label",
       "value": "WebDev"
-    },    {
-      "name": "java_script_access",
+    },
+    {
+      "name": "help",
+      "value": "Help"
+    },
+    {
+      "name": "close",
+      "value": "Close"
+    },
+    {
+      "name": "setting",
+      "value": "Setting"
+    },
+    {
+      "name": "web_options_java_script_access",
       "value": "JavaScript Access"
-    },{
-      "name": "dom_storage_access",
+    },
+    {
+      "name": "web_options_dom_storage_access",
       "value": "DOM Storage Access"
-    },{
+    },
+    {
       "name": "web_options_basic_ability",
       "value": "General Ability"
-    },{
+    },
+    {
       "name": "web_options_dark_mode",
       "value": "Dark Mode"
-    },{
-      "name": "web_options_dark_mode_off",
+    },
+    {
+      "name": "web_options_dark_mode_value_off",
       "value": "Disable"
-    },{
-      "name": "web_options_dark_mode_on",
+    },
+    {
+      "name": "web_options_dark_mode_value_on",
       "value": "Enable"
-    },{
-      "name": "web_options_dark_mode_auto",
+    },
+    {
+      "name": "web_options_dark_mode_value_auto",
       "value": "Auto"
-    },{
+    },
+    {
       "name": "web_options_force_dark_access",
-      "value": "Force Dark Access"
+      "value": "Force Dark Mode"
+    },
+    {
+      "name": "web_options_file_access",
+      "value": "File Access"
+    },
+    {
+      "name": "web_options_image_access",
+      "value": "Auto-load Images"
+    },
+    {
+      "name": "web_options_online_image_access",
+      "value": "Online Image Access"
+    },
+    {
+      "name": "web_options_over_scroll_mode",
+      "value": "Over Scroll Mode"
+    },
+    {
+      "name": "web_options_over_scroll_mode_value_never",
+      "value": "Never"
+    },
+    {
+      "name": "web_options_over_scroll_mode_value_always",
+      "value": "Always"
+    },
+    {
+      "name": "web_options_mixed_mode",
+      "value": "Mixed Security Mode"
+    },
+    {
+      "name": "web_options_mixed_help",
+      "value": "Controls how a secure page handles loading resources from insecure sources"
+    },
+    {
+      "name": "web_options_mixed_mode_value_none",
+      "value": "Strict Mode"
+    },
+    {
+      "name": "web_options_mixed_mode_value_compatible",
+      "value": "Compatible Mode"
+    },
+    {
+      "name": "web_options_mixed_mode_value_all",
+      "value": "Allow All"
+    },
+    {
+      "name": "web_options_zoom_access",
+      "value": "Zoom Gestures"
+    },
+    {
+      "name": "web_options_overview_mode_access",
+      "value": "Overview Mode"
+    },
+    {
+      "name": "web_options_geolocation_access",
+      "value": "Geolocation"
+    },
+    {
+      "name": "web_options_media_play_gesture_access",
+      "value": "Media Autoplay Gesture"
+    },
+    {
+      "name": "web_options_horizontal_scroll_bar_access",
+      "value": "Horizontal Scrollbar"
+    },
+    {
+      "name": "web_options_vertical_scroll_bar_access",
+      "value": "Vertical Scrollbar"
+    },
+    {
+      "name": "web_options_cache_mode",
+      "value": "Cache Mode"
+    },
+    {
+      "name": "web_options_cache_mode_value_default",
+      "value": "Default"
+    },
+    {
+      "name": "web_options_cache_mode_value_none",
+      "value": "Cache(No Expire)"
+    },
+    {
+      "name": "web_options_cache_mode_value_online",
+      "value": "Disable"
+    },
+    {
+      "name": "web_options_cache_mode_value_only",
+      "value": "Cache(Only)"
+    },
+    {
+      "name": "web_options_copy_options",
+      "value": "Copy Options"
+    },
+    {
+      "name": "web_options_copy_options_value_none",
+      "value": "Prohibited"
+    },
+    {
+      "name": "web_options_copy_options_value_in_app",
+      "value": "In App"
+    },
+    {
+      "name": "web_options_copy_options_value_local_device",
+      "value": "Allow"
+    },
+    {
+      "name": "web_options_text_zoom_ratio",
+      "value": "Text Zoom Ratio"
+    },
+    {
+      "name": "web_options_initial_scale",
+      "value": "Initial Scale (%)"
+    },
+    {
+      "name": "web_options_block_network",
+      "value": "Block Network Loads"
+    },
+    {
+      "name": "web_options_default_font_size",
+      "value": "Default Font Size"
+    },
+    {
+      "name": "web_options_default_fixed_font_size",
+      "value": "Default Fixed Font Size"
+    },
+    {
+      "name": "web_options_min_font_size",
+      "value": "Minimum Font Size"
+    },
+    {
+      "name": "web_options_min_logical_font_size",
+      "value": "Minimum Logical Font Size"
+    },
+    {
+      "name": "web_options_web_fixed_font",
+      "value": "Fixed Font"
+    },
+    {
+      "name": "web_options_web_sans_serif_font",
+      "value": "Sans Serif Font"
+    },
+    {
+      "name": "web_options_web_serif_font",
+      "value": "Serif Font"
+    },
+    {
+      "name": "web_options_web_standard_font",
+      "value": "Standard Font"
+    },
+    {
+      "name": "web_options_web_fantasy_font",
+      "value": "Fantasy Font"
+    },
+    {
+      "name": "web_options_web_cursive_font",
+      "value": "Cursive Font"
+    },
+    {
+      "name": "web_options_pinch_smooth",
+      "value": "Pinch Smooth"
+    },
+    {
+      "name": "web_options_layout_mode",
+      "value": "Layout Mode"
+    },
+    {
+      "name": "web_options_bypass_vsync_condition",
+      "value": "Bypass Vsync (scrollBy)"
+    },
+    {
+      "name": "web_options_enable_native_embed_mode",
+      "value": "Native Embed Mode"
+    },
+    {
+      "name": "web_options_force_display_scroll_bar",
+      "value": "Persistent Scrollbar"
+    },
+    {
+      "name": "web_options_default_text_encoding_format",
+      "value": "Default Text Encoding"
+    },
+    {
+      "name": "web_options_meta_viewport",
+      "value": "Enable meta viewport"
+    },
+    {
+      "name": "web_options_text_autosizing",
+      "value": "Auto-adjust Text Size"
+    },
+    {
+      "name": "web_options_keyboard_avoid_mode",
+      "value": "Keyboard Avoidance Mode"
+    },
+    {
+      "name": "web_options_blur_on_keyboard_hide_mode",
+      "value": "Blur on Keyboard Hide"
+    },
+    {
+      "name": "web_options_enable_follow_system_font_weight",
+      "value": "Follow System Font Weight"
+    },
+    {
+      "name": "web_options_enable_web_av_session",
+      "value": "AV Session Integration"
+    },
+    {
+      "name": "web_options_enable_data_detector",
+      "value": "Text Data Detection"
+    },
+    {
+      "name": "web_options_gesture_focus_mode",
+      "value": "Gesture Focus Mode"
     }
   ]
 }

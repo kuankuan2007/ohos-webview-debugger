@@ -3,7 +3,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { LengthMetrics } from '@kit.ArkUI';
 import { KWebOptions, defaultInitValue, KWebValue } from '../options';
 import { ConfigList } from '../options/main';
-
+import { deviceInfo } from '@kit.BasicServicesKit';
 import { addSaveCallback, getPreferences } from '../data'
 import { preferences } from "@kit.ArkData"
 
@@ -16,7 +16,9 @@ struct Main {
   @Local options: KWebOptions = new KWebOptions()
   private settingCustomDialogController = new CustomDialogController({
     builder: this.settingDialog,
-    backgroundColor: $r("app.color.first_background"),
+    backgroundColor: $r("sys.color.background_secondary"),
+    alignment: deviceInfo.deviceType === deviceInfo.DeviceTypes.TYPE_PHONE ? DialogAlignment.Bottom :
+      DialogAlignment.Default
   })
 
   aboutToAppear(): void {
@@ -30,7 +32,7 @@ struct Main {
     if (!this.preference) {
       throw new Error("Preferences not found")
     }
-    addSaveCallback(()=>{
+    addSaveCallback(() => {
       this.saveData();
     })
     this.preference.get("url", "www.example.com", (err, data) => {
@@ -49,7 +51,7 @@ struct Main {
   }
 
   private async saveData() {
-    console.info("Saving datas")
+    console.info("Saving data")
     if (!this.preference) {
       return;
     }
@@ -75,9 +77,12 @@ struct Main {
 
   @Builder
   settingDialog() {
-    ConfigList({
-      options: this.options
-    }).background($r("app.color.first_background"))
+    Column(){
+
+      ConfigList({
+        options: this.options
+      })
+    }
   }
 
   build() {
@@ -97,10 +102,9 @@ struct Main {
           .onSubmit(() => this.refresh())
 
         Button() {
-          Image($r("app.media.arrow_clockwise"))
-            .width(25)
-            .height(25)
-            .fillColor($r("app.color.text_color"))
+          SymbolGlyph($r("sys.symbol.arrow_clockwise"))
+            .fontColor([$r("sys.color.icon_primary")])
+            .fontSize(25)
         }
         .onClick(() => this.refresh())
         .height(50)
@@ -109,10 +113,9 @@ struct Main {
         .type(ButtonType.Circle)
 
         Button() {
-          Image($r("app.media.gearshape"))
-            .width(25)
-            .height(25)
-            .fillColor($r("app.color.text_color"))
+          SymbolGlyph($r("sys.symbol.gearshape"))
+            .fontColor([$r("sys.color.icon_primary")])
+            .fontSize(25)
         }
         .onClick(() => this.settingCustomDialogController.open())
         .height(50)
@@ -122,10 +125,9 @@ struct Main {
       }
       .width("100%")
       .padding(10)
+      .backgroundColor($r("sys.color.background_primary"))
 
       Web({ src: this.url, controller: this.controller })
-        .javaScriptAccess(this.options.javaScriptAccess)
-        .domStorageAccess(this.options.domStorageAccess)
         .width('100%')
         .height('100%')
         .onLoadIntercept((event) => {
@@ -133,8 +135,50 @@ struct Main {
           this.url = url;
           return false;
         })
+        .javaScriptAccess(this.options.javaScriptAccess)
+        .domStorageAccess(this.options.domStorageAccess)
         .darkMode(this.options.darkMode)
         .forceDarkAccess(this.options.forceDarkAccess)
+        .fileAccess(this.options.fileAccess)
+        .imageAccess(this.options.imageAccess)
+        .onlineImageAccess(this.options.onlineImageAccess)
+        .overScrollMode(this.options.overScrollMode)
+        .mixedMode(this.options.mixedMode)
+        .zoomAccess(this.options.zoomAccess)
+        .overviewModeAccess(this.options.overviewModeAccess)
+        .geolocationAccess(this.options.geolocationAccess)
+        .mediaPlayGestureAccess(this.options.mediaPlayGestureAccess)
+        .horizontalScrollBarAccess(this.options.horizontalScrollBarAccess)
+        .verticalScrollBarAccess(this.options.verticalScrollBarAccess)
+        .cacheMode(this.options.cacheMode)
+        .copyOptions(this.options.copyOptions)
+        .textZoomRatio(this.options.textZoomRatio)
+        .initialScale(this.options.initialScale)
+        .blockNetwork(this.options.blockNetwork)
+        .defaultFontSize(this.options.defaultFontSize)
+        .defaultFixedFontSize(this.options.defaultFixedFontSize)
+        .minFontSize(this.options.minFontSize)
+        .minLogicalFontSize(this.options.minLogicalFontSize)
+        .webFixedFont(this.options.webFixedFont)
+        .webSansSerifFont(this.options.webSansSerifFont)
+        .webSerifFont(this.options.webSerifFont)
+        .webStandardFont(this.options.webStandardFont)
+        .webFantasyFont(this.options.webFantasyFont)
+        .webCursiveFont(this.options.webCursiveFont)
+        .pinchSmooth(this.options.pinchSmooth)
+        .layoutMode(this.options.layoutMode)
+        .bypassVsyncCondition(this.options.bypassVsyncCondition)
+        .enableNativeEmbedMode(this.options.enableNativeEmbedMode)
+        .forceDisplayScrollBar(this.options.forceDisplayScrollBar)
+        .defaultTextEncodingFormat(this.options.defaultTextEncodingFormat)
+        .metaViewport(this.options.metaViewport)
+        .textAutosizing(this.options.textAutosizing)
+        .keyboardAvoidMode(this.options.keyboardAvoidMode)
+        .blurOnKeyboardHideMode(this.options.blurOnKeyboardHideMode)
+        .enableFollowSystemFontWeight(this.options.enableFollowSystemFontWeight)
+        .enableWebAVSession(this.options.enableWebAVSession)
+        .enableDataDetector(this.options.enableDataDetector)
+        .gestureFocusMode(this.options.gestureFocusMode)
     }
     .width('100%')
     .height('100%')

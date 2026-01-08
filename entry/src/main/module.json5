@@ -58,6 +58,12 @@
         "usedScene": {
           "when": "always"
         }
+      },
+      {
+        "name": "ohos.permission.VIBRATE",
+        "usedScene": {
+          "when": "always"
+        }
       }
     ]
   }

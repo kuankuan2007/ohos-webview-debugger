@@ -3,15 +3,6 @@
     {
       "name": "start_window_background",
       "value": "#000000"
-    },{
-      "name": "text_color",
-      "value": "#ffffff"
-    },{
-      "name": "first_background",
-      "value": "#000000"
-    },{
-      "name": "second_background",
-      "value": "#191919"
     }
   ]
 }

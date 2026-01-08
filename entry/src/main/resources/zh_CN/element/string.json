@@ -5,29 +5,259 @@
       "value": "一个在鸿蒙上调试webview的应用"
     },
     {
-      "name": "java_script_access",
+      "name": "help",
+      "value": "帮助"
+    },
+    {
+      "name": "close",
+      "value": "关闭"
+    },
+    {
+      "name": "setting",
+      "value": "设置"
+    },
+    {
+      "name": "web_options_java_script_access",
       "value": "启用JavaScript"
-    },{
-      "name": "dom_storage_access",
+    },
+    {
+      "name": "web_options_dom_storage_access",
       "value": "启用Dom Storage"
-    },{
+    },
+    {
       "name": "web_options_basic_ability",
       "value": "基本功能"
-    },{
+    },
+    {
       "name": "web_options_dark_mode",
       "value": "深色模式"
-    },{
-      "name": "web_options_dark_mode_off",
+    },
+    {
+      "name": "web_options_dark_mode_value_off",
       "value": "禁用"
-    },{
-      "name": "web_options_dark_mode_on",
+    },
+    {
+      "name": "web_options_dark_mode_value_on",
       "value": "启用"
-    },{
-      "name": "web_options_dark_mode_auto",
+    },
+    {
+      "name": "web_options_dark_mode_value_auto",
       "value": "自动"
-    },{
+    },
+    {
       "name": "web_options_force_dark_access",
       "value": "强制深色模式"
+    },
+    {
+      "name": "web_options_file_access",
+      "value": "允许访问文件"
+    },
+    {
+      "name": "web_options_image_access",
+      "value": "自动加载图片"
+    },
+    {
+      "name": "web_options_online_image_access",
+      "value": "加载网络图片"
+    },
+    {
+      "name": "web_options_over_scroll_mode",
+      "value": "回弹模式"
+    },
+    {
+      "name": "web_options_over_scroll_mode_value_never",
+      "value": "关闭"
+    },
+    {
+      "name": "web_options_over_scroll_mode_value_always",
+      "value": "启用"
+    },
+    {
+      "name": "web_options_mixed_mode",
+      "value": "混合安全模式"
+    },
+    {
+      "name": "web_options_mixed_help",
+      "value": "设定当安全源尝试从非安全源加载资源时的行为"
+    },
+    {
+      "name": "web_options_mixed_mode_value_none",
+      "value": "严格模式"
+    },
+    {
+      "name": "web_options_mixed_mode_value_compatible",
+      "value": "兼容模式"
+    },
+    {
+      "name": "web_options_mixed_mode_value_all",
+      "value": "允许所有内容"
+    },
+    {
+      "name": "web_options_zoom_access",
+      "value": "允许缩放"
+    },
+    {
+      "name": "web_options_overview_mode_access",
+      "value": "概览模式"
+    },
+    {
+      "name": "web_options_geolocation_access",
+      "value": "定位权限"
+    },
+    {
+      "name": "web_options_media_play_gesture_access",
+      "value": "媒体播放手势"
+    },
+    {
+      "name": "web_options_horizontal_scroll_bar_access",
+      "value": "水平滚动条"
+    },
+    {
+      "name": "web_options_vertical_scroll_bar_access",
+      "value": "垂直滚动条"
+    },
+    {
+      "name": "web_options_cache_mode",
+      "value": "缓存模式"
+    },
+    {
+      "name": "web_options_cache_mode_value_default",
+      "value": "默认"
+    },
+    {
+      "name": "web_options_cache_mode_value_none",
+      "value": "缓存（无过期）"
+    },
+    {
+      "name": "web_options_cache_mode_value_online",
+      "value": "禁用"
+    },
+    {
+      "name": "web_options_cache_mode_value_only",
+      "value": "仅缓存"
+    },
+    {
+      "name": "web_options_copy_options",
+      "value": "复制范围"
+    },{
+      "name": "web_options_copy_options_value_none",
+      "value": "禁止"
+    },
+    {
+      "name": "web_options_copy_options_value_in_app",
+      "value": "仅应用内"
+    },
+    {
+      "name": "web_options_copy_options_value_local_device",
+      "value": "不限制"
+    },
+    {
+      "name": "web_options_text_zoom_ratio",
+      "value": "文字缩放比例"
+    },
+    {
+      "name": "web_options_initial_scale",
+      "value": "初始缩放比例"
+    },
+    {
+      "name": "web_options_block_network",
+      "value": "阻止加载网络资源"
+    },
+    {
+      "name": "web_options_default_font_size",
+      "value": "默认字体大小"
+    },
+    {
+      "name": "web_options_default_fixed_font_size",
+      "value": "默认等宽字体大小"
+    },
+    {
+      "name": "web_options_min_font_size",
+      "value": "最小字体大小"
+    },
+    {
+      "name": "web_options_min_logical_font_size",
+      "value": "最小逻辑字体大小"
+    },
+    {
+      "name": "web_options_web_fixed_font",
+      "value": "等宽字体"
+    },
+    {
+      "name": "web_options_web_sans_serif_font",
+      "value": "无衬线字体"
+    },
+    {
+      "name": "web_options_web_serif_font",
+      "value": "衬线字体"
+    },
+    {
+      "name": "web_options_web_standard_font",
+      "value": "标准字体"
+    },
+    {
+      "name": "web_options_web_fantasy_font",
+      "value": "Fantasy 字体"
+    },
+    {
+      "name": "web_options_web_cursive_font",
+      "value": "手写字体"
+    },
+    {
+      "name": "web_options_pinch_smooth",
+      "value": "捏合流畅模式"
+    },
+    {
+      "name": "web_options_layout_mode",
+      "value": "布局模式"
+    },
+    {
+      "name": "web_options_bypass_vsync_condition",
+      "value": "绕过 Vsync 条件"
+    },
+    {
+      "name": "web_options_enable_native_embed_mode",
+      "value": "同层渲染"
+    },
+    {
+      "name": "web_options_force_display_scroll_bar",
+      "value": "滚动条常驻"
+    },
+    {
+      "name": "web_options_default_text_encoding_format",
+      "value": "默认字符编码"
+    },
+    {
+      "name": "web_options_meta_viewport",
+      "value": "启用 meta viewport"
+    },
+    {
+      "name": "web_options_text_autosizing",
+      "value": "文本字体大小自动调整"
+    },
+    {
+      "name": "web_options_keyboard_avoid_mode",
+      "value": "Web 软键盘避让模式"
+    },
+    {
+      "name": "web_options_blur_on_keyboard_hide_mode",
+      "value": "键盘收起失焦模式"
+    },
+    {
+      "name": "web_options_enable_follow_system_font_weight",
+      "value": "字重跟随系统设置"
+    },
+    {
+      "name": "web_options_enable_web_av_session",
+      "value": "对接播控中心"
+    },
+    {
+      "name": "web_options_enable_data_detector",
+      "value": "网页文本实体识别"
+    },
+    {
+      "name": "web_options_gesture_focus_mode",
+      "value": "手势获焦模式"
     }
   ]
 }
