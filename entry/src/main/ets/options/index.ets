@@ -97,7 +97,7 @@ export const CacheModeValues: readonly SelectValueMap<CacheMode>[] = [
   }
 ]
 
-export const CopyOptionsValues: readonly SelectValueMap<CopyOptions>[]= [
+export const CopyOptionsValues: readonly SelectValueMap<CopyOptions>[] = [
   {
     rawValue: CopyOptions.LocalDevice,
     show: {
@@ -114,6 +114,72 @@ export const CopyOptionsValues: readonly SelectValueMap<CopyOptions>[]= [
     rawValue: CopyOptions.None,
     show: {
       value: $r("app.string.web_options_copy_options_value_none")
+    }
+  }
+]
+
+export const LayoutModeValues: readonly SelectValueMap<WebLayoutMode>[] = [
+  {
+    rawValue: WebLayoutMode.NONE,
+    show: {
+      value: $r("app.string.web_options_layout_mode_value_none")
+    }
+  },
+  {
+    rawValue: WebLayoutMode.FIT_CONTENT,
+    show: {
+      value: $r("app.string.web_options_layout_mode_value_fit_content")
+    }
+  }
+]
+
+export const KeyboardAvoidModeValues: readonly SelectValueMap<WebKeyboardAvoidMode>[] = [
+  {
+    rawValue: WebKeyboardAvoidMode.RESIZE_VISUAL,
+    show: {
+      value: $r("app.string.web_options_keyboard_avoid_mode_value_resize_visual")
+    }
+  },
+  {
+    rawValue: WebKeyboardAvoidMode.RESIZE_CONTENT,
+    show: {
+      value: $r("app.string.web_options_keyboard_avoid_mode_value_resize_content")
+    }
+  },
+  {
+    rawValue: WebKeyboardAvoidMode.OVERLAYS_CONTENT,
+    show: {
+      value: $r("app.string.web_options_keyboard_avoid_mode_value_overlays_content")
+    }
+  }
+]
+
+export const BlurOnKeyboardHideModeValues: readonly SelectValueMap<BlurOnKeyboardHideMode>[] = [
+  {
+    rawValue: BlurOnKeyboardHideMode.SILENT,
+    show: {
+      value: $r("app.string.web_options_blur_on_keyboard_hide_mode_value_silent")
+    }
+  },
+  {
+    rawValue: BlurOnKeyboardHideMode.BLUR,
+    show: {
+      value: $r("app.string.web_options_blur_on_keyboard_hide_mode_value_blur")
+    }
+  }
+]
+
+export const GestureFocusModeValues: readonly SelectValueMap<GestureFocusMode>[] = [
+  {
+    rawValue: GestureFocusMode.DEFAULT,
+    show: {
+      value: $r("app.string.web_options_gesture_focus_mode_value_default")
+    }
+  },
+  {
+    rawValue: GestureFocusMode.GESTURE_TAP_AND_LONG_PRESS,
+    show: {
+      value: $r("app.string.web_options_gesture_focus_mode_value_gesture_tap_and_long_press")
     }
   }
 ]
@@ -161,7 +227,8 @@ export interface KWebValue {
   webCursiveFont: string,
   pinchSmooth: boolean,
   layoutMode: WebLayoutMode,
-  bypassVsyncCondition: WebBypassVsyncCondition,
+
+  // bypassVsyncCondition: WebBypassVsyncCondition, // Useless
   enableNativeEmbedMode: boolean,
   forceDisplayScrollBar: boolean, // TODO: 即layoutMode为WebLayoutMode.FIT_CONTENT模式时，参数enabled为false
   defaultTextEncodingFormat: string,
@@ -208,7 +275,7 @@ export const defaultInitValue: KWebValue = {
   webCursiveFont: "cursive",
   pinchSmooth: false,
   layoutMode: WebLayoutMode.NONE,
-  bypassVsyncCondition: WebBypassVsyncCondition.NONE,
+  // bypassVsyncCondition: WebBypassVsyncCondition.NONE,
   enableNativeEmbedMode: false,
   forceDisplayScrollBar: false,
   defaultTextEncodingFormat: "UTF-8",
@@ -256,7 +323,7 @@ export class KWebOptions {
   @Trace webCursiveFont: string;
   @Trace pinchSmooth: boolean;
   @Trace layoutMode: WebLayoutMode;
-  @Trace bypassVsyncCondition: WebBypassVsyncCondition;
+  // @Trace bypassVsyncCondition: WebBypassVsyncCondition;
   @Trace enableNativeEmbedMode: boolean;
   @Trace forceDisplayScrollBar: boolean;
   @Trace defaultTextEncodingFormat: string;
@@ -302,7 +369,7 @@ export class KWebOptions {
     this.webCursiveFont = options.webCursiveFont ?? defaultInitValue.webCursiveFont
     this.pinchSmooth = options.pinchSmooth ?? defaultInitValue.pinchSmooth
     this.layoutMode = options.layoutMode ?? defaultInitValue.layoutMode
-    this.bypassVsyncCondition = options.bypassVsyncCondition ?? defaultInitValue.bypassVsyncCondition
+    // this.bypassVsyncCondition = options.bypassVsyncCondition ?? defaultInitValue.bypassVsyncCondition
     this.enableNativeEmbedMode = options.enableNativeEmbedMode ?? defaultInitValue.enableNativeEmbedMode
     this.forceDisplayScrollBar = options.forceDisplayScrollBar ?? defaultInitValue.forceDisplayScrollBar
     this.defaultTextEncodingFormat = options.defaultTextEncodingFormat ?? defaultInitValue.defaultTextEncodingFormat
@@ -351,7 +418,7 @@ export class KWebOptions {
       webCursiveFont: this.webCursiveFont,
       pinchSmooth: this.pinchSmooth,
       layoutMode: this.layoutMode,
-      bypassVsyncCondition: this.bypassVsyncCondition,
+      // bypassVsyncCondition: this.bypassVsyncCondition,
       enableNativeEmbedMode: this.enableNativeEmbedMode,
       forceDisplayScrollBar: this.forceDisplayScrollBar,
       defaultTextEncodingFormat: this.defaultTextEncodingFormat,

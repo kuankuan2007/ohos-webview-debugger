@@ -1,4 +1,16 @@
-import { CacheModeValues, CopyOptionsValues, DarkModeValues, KWebOptions, MixedModeValues, OverScrollValues } from '.'
+import {
+  BlurOnKeyboardHideModeValues,
+  CacheModeValues,
+  CopyOptionsValues,
+  DarkModeValues,
+  GestureFocusModeValues,
+  KeyboardAvoidModeValues,
+  KWebOptions,
+  LayoutModeValues,
+  MixedModeValues,
+  OverScrollValues
+} from '.'
+
 
 interface Help {
   title: ResourceStr,
@@ -9,8 +21,10 @@ interface Help {
 struct ItemBase {
   @Param hide: boolean = false
   @Param @Require title: ResourceStr;
+  @Param resetButton: boolean = false;
   @BuilderParam inner: () => void
   @Param help?: Help = void 0;
+  @Event onReset: () => void
 
   build() {
     Row() {
@@ -41,6 +55,17 @@ struct ItemBase {
             ]
           })
         })
+      }
+      if (this.resetButton) {
+        Button() {
+          SymbolGlyph($r("sys.symbol.undo"))
+            .fontColor([$r("sys.color.icon_tertiary")])
+        }
+        .type(ButtonType.Circle)
+        .buttonStyle(ButtonStyleMode.TEXTUAL)
+        .width(35)
+        .margin({ left: 3 })
+        .onClick(() => this.onReset())
       }
       Blank()
       this.inner()
@@ -101,6 +126,77 @@ struct ItemSwitch {
   }
 }
 
+@ComponentV2
+struct ItemNumber {
+  @Param @Require title: ResourceStr;
+  @Param @Require value: number
+  @Param min: number = 0;
+  @Param max: number = 1000;
+  @Param default: number = 100;
+  @Event onChange: (value: number) => void
+  @Param hide: boolean = false
+  @Param help?: Help = void 0;
+
+  build() {
+    ItemBase({
+      hide: this.hide,
+      title: this.title,
+      help: this.help,
+      resetButton: true,
+      onReset: () => this.onChange(this.default)
+    }) {
+      TextInput({
+        text: this.value.toString()
+      })
+        .type(InputType.Number)
+        .onChange((value) => {
+          const numValue = Number(value)
+          let res: number = numValue;
+          if (Number.isNaN(numValue)) {
+            res = this.default
+          } else if (numValue > this.max) {
+            res = this.max
+          } else if (numValue < this.min) {
+            res = this.min
+          }
+          this.onChange(res);
+        })
+        .width(80)
+        .textAlign(TextAlign.Center)
+    }
+  }
+}
+
+@ComponentV2
+struct ItemString {
+  @Param @Require title: ResourceStr;
+  @Param @Require value: string
+  @Event onChange: (value: string) => void
+  @Param hide: boolean = false
+  @Param help?: Help = void 0;
+  @Param default: string = '';
+
+  build() {
+    ItemBase({
+      hide: this.hide,
+      title: this.title,
+      help: this.help,
+      resetButton: Boolean(this.default),
+      onReset: () => this.onChange(this.default)
+    }) {
+      TextInput({
+        text: this.value
+      })
+        .type(InputType.Normal)
+        .onChange((value) => {
+          this.onChange(value);
+        })
+        .width(120)
+        .textAlign(TextAlign.Start)
+    }
+  }
+}
+
 class MyListItemGroupStyle implements AttributeModifier<ListItemGroupAttribute> {
   applyNormalAttribute(instance: ListItemGroupAttribute): void {
     instance
@@ -116,7 +212,7 @@ class MyListItemStyle implements AttributeModifier<ListItemAttribute> {
   applyNormalAttribute(instance: ListItemAttribute): void {
     instance
       .padding({
-        left: 10,
+        left: 15,
         right: 10
       })
   }
@@ -155,7 +251,7 @@ export struct ConfigList {
         space: 15
       }) {
         ListItemGroup({
-          header: this.itemHeader($r("app.string.web_options_basic_ability")),
+          header: this.itemHeader($r("app.string.web_options_group_basic_ability")),
           style: ListItemGroupStyle.CARD,
           space: 5
         }) {
@@ -179,7 +275,11 @@ export struct ConfigList {
             ItemToggle({
               title: $r("app.string.web_options_file_access"),
               value: this.options.fileAccess,
-              onChange: (value: boolean) => this.options.fileAccess = value
+              onChange: (value: boolean) => this.options.fileAccess = value,
+              help: {
+                title: "File Access",
+                content: $r("app.string.web_options_file_access_help")
+              }
             })
           }.attributeModifier(this.itemStyle)
 
@@ -198,6 +298,199 @@ export struct ConfigList {
               onChange: (value: boolean) => this.options.onlineImageAccess = value
             })
           }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemToggle({
+              title: $r("app.string.web_options_block_network"),
+              value: this.options.blockNetwork,
+              onChange: (value: boolean) => this.options.blockNetwork = value
+            })
+          }.attributeModifier(this.itemStyle)
+        }.attributeModifier(this.itemGroupStyle)
+
+        ListItemGroup({
+          header: this.itemHeader($r("app.string.web_options_group_color_mode")),
+          style: ListItemGroupStyle.CARD,
+          space: 5
+        }) {
+          ListItem() {
+            ItemSwitch({
+              title: $r("app.string.web_options_dark_mode"),
+              selections: DarkModeValues.map(i => i.show),
+              value: DarkModeValues.findIndex(i => i.rawValue === this.options.darkMode),
+              onChange: (value) => {
+                this.options.darkMode = DarkModeValues[value].rawValue
+              }
+            })
+          }.attributeModifier(this.itemStyle)
+
+
+          ListItem() {
+            ItemToggle({
+              title: $r("app.string.web_options_force_dark_access"),
+              value: this.options.forceDarkAccess,
+              onChange: (value: boolean) => this.options.forceDarkAccess = value,
+              hide: this.options.darkMode === WebDarkMode.Off
+            })
+          }.attributeModifier(this.itemStyle)
+
+        }.attributeModifier(this.itemGroupStyle)
+
+        ListItemGroup({
+          header: this.itemHeader($r("app.string.web_options_group_zoom")),
+          style: ListItemGroupStyle.CARD,
+          space: 5
+        }) {
+          ListItem() {
+            ItemToggle({
+              title: $r("app.string.web_options_zoom_access"),
+              value: this.options.zoomAccess,
+              onChange: (value) => {
+                this.options.zoomAccess = value
+              }
+            })
+          }
+          .attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemNumber({
+              title: $r("app.string.web_options_initial_scale"),
+              value: this.options.initialScale,
+              onChange: (value: number) => this.options.initialScale = value,
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemNumber({
+              title: $r("app.string.web_options_text_zoom_ratio"),
+              value: this.options.textZoomRatio,
+              onChange: (value: number) => this.options.textZoomRatio = value,
+            })
+          }.attributeModifier(this.itemStyle)
+
+        }.attributeModifier(this.itemGroupStyle)
+
+        ListItemGroup({
+          header: this.itemHeader($r("app.string.web_options_group_font")),
+          style: ListItemGroupStyle.CARD,
+          space: 5
+        }) {
+          ListItem() {
+            ItemNumber({
+              title: $r("app.string.web_options_default_font_size"),
+              value: this.options.defaultFontSize,
+              onChange: (value: number) => this.options.defaultFontSize = value,
+              default: 16,
+              min: 1,
+              max: 72
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemNumber({
+              title: $r("app.string.web_options_default_font_size"),
+              value: this.options.defaultFontSize,
+              onChange: (value: number) => this.options.defaultFontSize = value,
+              default: 16,
+              min: 1,
+              max: 72
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemNumber({
+              title: $r("app.string.web_options_default_fixed_font_size"),
+              value: this.options.defaultFixedFontSize,
+              onChange: (value: number) => this.options.defaultFixedFontSize = value,
+              default: 13,
+              min: 1,
+              max: 72
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemNumber({
+              title: $r("app.string.web_options_min_font_size"),
+              value: this.options.minFontSize,
+              onChange: (value: number) => this.options.minFontSize = value,
+              default: 8,
+              min: 1,
+              max: 72
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemNumber({
+              title: $r("app.string.web_options_min_logical_font_size"),
+              value: this.options.minLogicalFontSize,
+              onChange: (value: number) => this.options.minLogicalFontSize = value,
+              default: 8,
+              min: 1,
+              max: 72
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemString({
+              title: $r("app.string.web_options_web_standard_font"),
+              value: this.options.webStandardFont,
+              onChange: (value: string) => this.options.webStandardFont = value,
+              default: 'sans-serif',
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemString({
+              title: $r("app.string.web_options_web_fixed_font"),
+              value: this.options.webFixedFont,
+              onChange: (value: string) => this.options.webFixedFont = value,
+              default: 'monospace',
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemString({
+              title: $r("app.string.web_options_web_sans_serif_font"),
+              value: this.options.webSansSerifFont,
+              onChange: (value: string) => this.options.webSansSerifFont = value,
+              default: 'sans-serif',
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemString({
+              title: $r("app.string.web_options_web_serif_font"),
+              value: this.options.webSerifFont,
+              onChange: (value: string) => this.options.webSerifFont = value,
+              default: 'serif',
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemString({
+              title: $r("app.string.web_options_web_fantasy_font"),
+              value: this.options.webFantasyFont,
+              onChange: (value: string) => this.options.webFantasyFont = value,
+              default: 'fantasy',
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemString({
+              title: $r("app.string.web_options_web_cursive_font"),
+              value: this.options.webCursiveFont,
+              onChange: (value: string) => this.options.webCursiveFont = value,
+              default: 'cursive',
+            })
+          }.attributeModifier(this.itemStyle)
+
+        }.attributeModifier(this.itemGroupStyle)
+
+        ListItemGroup({
+          header: this.itemHeader($r("app.string.web_options_group_advanced_options")),
+          style: ListItemGroupStyle.CARD,
+          space: 5
+        }) {
 
           ListItem() {
             ItemSwitch({
@@ -225,16 +518,6 @@ export struct ConfigList {
             })
           }.attributeModifier(this.itemStyle)
 
-          ListItem() {
-            ItemToggle({
-              title: $r("app.string.web_options_zoom_access"),
-              value: this.options.zoomAccess,
-              onChange: (value) => {
-                this.options.zoomAccess = value
-              }
-            })
-          }
-          .attributeModifier(this.itemStyle)
 
           ListItem() {
             ItemToggle({
@@ -264,6 +547,10 @@ export struct ConfigList {
               value: this.options.mediaPlayGestureAccess,
               onChange: (value) => {
                 this.options.mediaPlayGestureAccess = value
+              },
+              help: {
+                title: "Media Play Gesture Access",
+                content: $r("app.string.web_options_media_play_gesture_access_help")
               }
             })
           }
@@ -280,10 +567,10 @@ export struct ConfigList {
           }
           .attributeModifier(this.itemStyle)
 
-          ListItem(){
+          ListItem() {
             ItemToggle({
-              title:$r("app.string.web_options_vertical_scroll_bar_access"),
-              value:this.options.verticalScrollBarAccess,
+              title: $r("app.string.web_options_vertical_scroll_bar_access"),
+              value: this.options.verticalScrollBarAccess,
               onChange: (value) => {
                 this.options.verticalScrollBarAccess = value
               }
@@ -311,32 +598,145 @@ export struct ConfigList {
               },
             })
           }.attributeModifier(this.itemStyle)
-        }.attributeModifier(this.itemGroupStyle)
 
-        ListItemGroup({
-          header: this.itemHeader($r("app.string.web_options_dark_mode")),
-          style: ListItemGroupStyle.CARD,
-          space: 5
-        }) {
+          ListItem() {
+            ItemToggle({
+              title: $r("app.string.web_options_pinch_smooth"),
+              value: this.options.pinchSmooth,
+              onChange: (value) => {
+                this.options.pinchSmooth = value
+              }
+            })
+          }.attributeModifier(this.itemStyle)
+
           ListItem() {
             ItemSwitch({
-              title: $r("app.string.web_options_dark_mode"),
-              selections: DarkModeValues.map(i => i.show),
-              value: DarkModeValues.findIndex(i => i.rawValue === this.options.darkMode),
+              title: $r("app.string.web_options_layout_mode"),
+              selections: LayoutModeValues.map(i => i.show),
+              value: LayoutModeValues.findIndex(i => i.rawValue === this.options.layoutMode),
               onChange: (value) => {
-                this.options.darkMode = DarkModeValues[value].rawValue
+                this.options.layoutMode = LayoutModeValues[value].rawValue
+              },
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemToggle({
+              title: $r("app.string.web_options_enable_native_embed_mode"),
+              value: this.options.enableNativeEmbedMode,
+              onChange: (value) => {
+                this.options.enableNativeEmbedMode = value
               }
             })
           }.attributeModifier(this.itemStyle)
 
           ListItem() {
             ItemToggle({
-              title: $r("app.string.web_options_force_dark_access"),
-              value: this.options.forceDarkAccess,
-              onChange: (value: boolean) => this.options.forceDarkAccess = value,
-              hide: this.options.darkMode === WebDarkMode.Off
+              title: $r("app.string.web_options_force_display_scroll_bar"),
+              value: this.options.forceDisplayScrollBar,
+              onChange: (value) => {
+                this.options.forceDisplayScrollBar = value
+              }
             })
           }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemString({
+              title: $r("app.string.web_options_default_text_encoding_format"),
+              value: this.options.defaultTextEncodingFormat,
+              onChange: (value: string) => this.options.defaultTextEncodingFormat = value,
+              default: 'UTF-8',
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemToggle({
+              title: $r("app.string.web_options_meta_viewport"),
+              value: this.options.metaViewport,
+              onChange: (value) => {
+                this.options.metaViewport = value
+              }
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemToggle({
+              title: $r("app.string.web_options_text_autosizing"),
+              value: this.options.textAutosizing,
+              help: {
+                title: "Text Autosizing",
+                content: $r("app.string.web_options_text_autosizing_help")
+              },
+              onChange: (value) => {
+                this.options.textAutosizing = value
+              }
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemSwitch({
+              title: $r("app.string.web_options_keyboard_avoid_mode"),
+              selections: KeyboardAvoidModeValues.map(i => i.show),
+              value: KeyboardAvoidModeValues.findIndex(i => i.rawValue === this.options.keyboardAvoidMode),
+              onChange: (value) => {
+                this.options.keyboardAvoidMode = KeyboardAvoidModeValues[value].rawValue
+              },
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemSwitch({
+              title: $r("app.string.web_options_blur_on_keyboard_hide_mode"),
+              selections: BlurOnKeyboardHideModeValues.map(i => i.show),
+              value: BlurOnKeyboardHideModeValues.findIndex(i => i.rawValue === this.options.blurOnKeyboardHideMode),
+              onChange: (value) => {
+                this.options.blurOnKeyboardHideMode = BlurOnKeyboardHideModeValues[value].rawValue
+              },
+            })
+          }.attributeModifier(this.itemStyle)
+
+
+          ListItem() {
+            ItemToggle({
+              title: $r("app.string.web_options_enable_follow_system_font_weight"),
+              value: this.options.enableFollowSystemFontWeight,
+              onChange: (value) => {
+                this.options.enableFollowSystemFontWeight = value
+              }
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemToggle({
+              title: $r("app.string.web_options_enable_web_av_session"),
+              value: this.options.enableWebAVSession,
+              onChange: (value) => {
+                this.options.enableWebAVSession = value
+              }
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemToggle({
+              title: $r("app.string.web_options_enable_data_detector"),
+              value: this.options.enableDataDetector,
+              onChange: (value) => {
+                this.options.enableDataDetector = value
+              }
+            })
+          }.attributeModifier(this.itemStyle)
+
+          ListItem() {
+            ItemSwitch({
+              title: $r("app.string.web_options_gesture_focus_mode"),
+              selections: GestureFocusModeValues.map(i => i.show),
+              value: GestureFocusModeValues.findIndex(i => i.rawValue === this.options.gestureFocusMode),
+              onChange: (value) => {
+                this.options.gestureFocusMode = GestureFocusModeValues[value].rawValue
+              },
+            })
+          }.attributeModifier(this.itemStyle)
+
         }.attributeModifier(this.itemGroupStyle)
       }
       .sticky(StickyStyle.Header)

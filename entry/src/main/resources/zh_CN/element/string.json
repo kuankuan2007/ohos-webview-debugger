@@ -17,16 +17,32 @@
       "value": "设置"
     },
     {
+      "name": "web_options_group_basic_ability",
+      "value": "基本功能"
+    },
+    {
+      "name": "web_options_group_color_mode",
+      "value": "颜色模式"
+    },
+    {
+      "name": "web_options_group_zoom",
+      "value": "页面缩放"
+    },
+    {
+      "name": "web_options_group_font",
+      "value": "字体设置"
+    },
+    {
+      "name": "web_options_group_advanced_options",
+      "value": "高级选项"
+    },
+    {
       "name": "web_options_java_script_access",
       "value": "启用JavaScript"
     },
     {
       "name": "web_options_dom_storage_access",
       "value": "启用Dom Storage"
-    },
-    {
-      "name": "web_options_basic_ability",
-      "value": "基本功能"
     },
     {
       "name": "web_options_dark_mode",
@@ -51,6 +67,10 @@
     {
       "name": "web_options_file_access",
       "value": "允许访问文件"
+    },
+    {
+      "name": "web_options_file_access_help",
+      "value": "控制是否允许访问应用文件系统。通过 $rawfile(...) 引用的文件不受此开关限制"
     },
     {
       "name": "web_options_image_access",
@@ -94,7 +114,7 @@
     },
     {
       "name": "web_options_zoom_access",
-      "value": "允许缩放"
+      "value": "手势缩放"
     },
     {
       "name": "web_options_overview_mode_access",
@@ -106,7 +126,11 @@
     },
     {
       "name": "web_options_media_play_gesture_access",
-      "value": "媒体播放手势"
+      "value": "自动播放需点击"
+    },
+    {
+      "name": "web_options_media_play_gesture_access_help",
+      "value": "控制有声视频自动播放是否需要用户点击，静音视频不受影响"
     },
     {
       "name": "web_options_horizontal_scroll_bar_access",
@@ -139,7 +163,8 @@
     {
       "name": "web_options_copy_options",
       "value": "复制范围"
-    },{
+    },
+    {
       "name": "web_options_copy_options_value_none",
       "value": "禁止"
     },
@@ -212,6 +237,14 @@
       "value": "布局模式"
     },
     {
+      "name": "web_options_layout_mode_value_none",
+      "value": "默认"
+    },
+    {
+      "name": "web_options_layout_mode_value_fit_content",
+      "value": "自适应"
+    },
+    {
       "name": "web_options_bypass_vsync_condition",
       "value": "绕过 Vsync 条件"
     },
@@ -233,15 +266,43 @@
     },
     {
       "name": "web_options_text_autosizing",
-      "value": "文本字体大小自动调整"
+      "value": "文本自动调整"
+    },
+    {
+      "name": "web_options_text_autosizing_help",
+      "value": "开启后会将过小文本自动放大至约 16–32px，提升小屏设备可读性\n生效条件：\nPhone/Tablet/Wearable/TV；\n视口宽度 < 980px；\n文本量较大（字号×字符数 ≥ 3920）；\n未设置 meta viewport 的 width/initial-scale"
     },
     {
       "name": "web_options_keyboard_avoid_mode",
-      "value": "Web 软键盘避让模式"
+      "value": "键盘避让模式"
+    },
+    {
+      "name": "web_options_keyboard_avoid_mode_value_resize_visual",
+      "value": "仅可视视口"
+    },
+    {
+      "name": "web_options_keyboard_avoid_mode_value_resize_content",
+      "value": "可视+布局"
+    },
+    {
+      "name": "web_options_keyboard_avoid_mode_value_overlays_content",
+      "value": "覆盖内容"
+    },
+    {
+      "name": "web_options_keyboard_avoid_mode_value_return_to_uicontext",
+      "value": "UIContext"
     },
     {
       "name": "web_options_blur_on_keyboard_hide_mode",
       "value": "键盘收起失焦模式"
+    },
+    {
+      "name": "web_options_blur_on_keyboard_hide_mode_value_silent",
+      "value": "保持焦点"
+    },
+    {
+      "name": "web_options_blur_on_keyboard_hide_mode_value_blur",
+      "value": "失焦"
     },
     {
       "name": "web_options_enable_follow_system_font_weight",
@@ -258,6 +319,14 @@
     {
       "name": "web_options_gesture_focus_mode",
       "value": "手势获焦模式"
+    },
+    {
+      "name": "web_options_gesture_focus_mode_value_default",
+      "value": "任意手势"
+    },
+    {
+      "name": "web_options_gesture_focus_mode_value_gesture_tap_and_long_press",
+      "value": "仅点击/长按"
     }
   ]
 }

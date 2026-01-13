@@ -86,7 +86,7 @@ struct Main {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
       Flex({
         alignItems: ItemAlign.Center,
         justifyContent: FlexAlign.SpaceBetween,
@@ -167,7 +167,6 @@ struct Main {
         .webCursiveFont(this.options.webCursiveFont)
         .pinchSmooth(this.options.pinchSmooth)
         .layoutMode(this.options.layoutMode)
-        .bypassVsyncCondition(this.options.bypassVsyncCondition)
         .enableNativeEmbedMode(this.options.enableNativeEmbedMode)
         .forceDisplayScrollBar(this.options.forceDisplayScrollBar)
         .defaultTextEncodingFormat(this.options.defaultTextEncodingFormat)
