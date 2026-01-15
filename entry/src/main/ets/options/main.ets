@@ -9,7 +9,7 @@ import {
   LayoutModeValues,
   MixedModeValues,
   OverScrollValues
-} from '.'
+} from './index'
 
 
 interface Help {
@@ -636,7 +636,8 @@ export struct ConfigList {
               value: this.options.forceDisplayScrollBar,
               onChange: (value) => {
                 this.options.forceDisplayScrollBar = value
-              }
+              },
+              hide: this.options.layoutMode === WebLayoutMode.FIT_CONTENT
             })
           }.attributeModifier(this.itemStyle)
 

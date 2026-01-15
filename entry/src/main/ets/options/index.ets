@@ -230,7 +230,7 @@ export interface KWebValue {
 
   // bypassVsyncCondition: WebBypassVsyncCondition, // Useless
   enableNativeEmbedMode: boolean,
-  forceDisplayScrollBar: boolean, // TODO: 即layoutMode为WebLayoutMode.FIT_CONTENT模式时，参数enabled为false
+  forceDisplayScrollBar: boolean,
   defaultTextEncodingFormat: string,
   metaViewport: boolean,
   textAutosizing: boolean,
